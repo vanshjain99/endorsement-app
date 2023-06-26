@@ -12,6 +12,9 @@ const endorsementsInDB = ref(database, "endorsementsList")
 const inputFieldEl = document.getElementById("input-endorsement")
 const publishBtnEl = document.getElementById("publish-btn")
 const publishedItemsEl = document.getElementById("published-items")
+const inputFromEl = document.getElementById("from-input")
+const inputToEl = document.getElementById("to-input")
+const inputWarningEl = document.getElementById("input-warning")
 
 onValue(endorsementsInDB, function(snapshot){
     if(snapshot.exists()){
@@ -23,7 +26,20 @@ onValue(endorsementsInDB, function(snapshot){
             let currentEdorsementValue = currentEndorsement[1]
 
             let newLiEl = document.createElement("li")
-            newLiEl.textContent = currentEdorsementValue
+
+            newLiEl.innerHTML = `
+            <span class="boldspan">
+                To ${currentEdorsementValue.toName},
+                
+            </span><br><br>
+            ${currentEdorsementValue.text}<br><br>
+            <span class="boldspan">
+            From ${currentEdorsementValue.fromName}
+                
+            </span>`
+
+
+
             publishedItemsEl.append(newLiEl)
 
             newLiEl.addEventListener("dblclick", function(){
@@ -38,14 +54,27 @@ onValue(endorsementsInDB, function(snapshot){
 
 publishBtnEl.addEventListener("click", function(){
     let inputValue = inputFieldEl.value
-    if(inputValue){
-        push(endorsementsInDB, inputValue)
+    let fromValue = inputFromEl.value
+    let toValue = inputToEl.value
+
+    let obj = {
+        text: inputValue,
+        fromName: fromValue,
+        toName: toValue
+    }
+    if(inputValue && fromValue && toValue){
+
+        push(endorsementsInDB, obj)
+    }else{
+        inputWarningEl.textContent = "⚠ Please fill all the fields."
     }
     clearInputFieldEl()
 })
 
 function clearInputFieldEl(){
     inputFieldEl.value = ""
+    inputFromEl.value = ""
+    inputToEl.value = ""
 }
 
 
