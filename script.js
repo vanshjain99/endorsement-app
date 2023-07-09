@@ -26,6 +26,7 @@ onValue(endorsementsInDB, function(snapshot){
             let currentEdorsementValue = currentEndorsement[1]
 
             let newLiEl = document.createElement("li")
+            newLiEl.className = "li-el"
 
             newLiEl.innerHTML = `
             <span class="boldspan">
@@ -35,6 +36,7 @@ onValue(endorsementsInDB, function(snapshot){
             ${currentEdorsementValue.text}<br><br>
             <span class="boldspan">
             From ${currentEdorsementValue.fromName}
+            <button class="like-btn">♥ 0</button>
                 
             </span>`
 

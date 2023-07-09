@@ -147,3 +147,16 @@ textarea::-webkit-scrollbar {
     font-family: 'Inter', sans-serif;
     color: rgba(255, 0, 0, 0.644);
   }
+  .like-btn{
+    position: absolute;
+    top: auto;
+    left: auto;
+    bottom: 0;
+    right: 0;
+    padding: 10px 15px;
+    background: none;
+    border: none;
+  }
+  .li-el{
+    position: relative;
+  }
