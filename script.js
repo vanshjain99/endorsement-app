@@ -27,7 +27,7 @@ onValue(endorsementsInDB, function(snapshot){
 
             let newLiEl = document.createElement("li")
             newLiEl.className = "li-el"
-
+            let likes = 0
             newLiEl.innerHTML = `
             <span class="boldspan">
                 To ${currentEdorsementValue.toName},
@@ -36,10 +36,15 @@ onValue(endorsementsInDB, function(snapshot){
             ${currentEdorsementValue.text}<br><br>
             <span class="boldspan">
             From ${currentEdorsementValue.fromName}
-            <button class="like-btn">♥ 0</button>
+            <button class="like-btn" id="like-btn">❤ ${likes}</button>
                 
             </span>`
 
+
+            // const likeBtn = document.getElementById("like-btn")
+            // likeBtn.addEventListener("click", function(){
+            //     likeBtn.innerHTML = "hello"
+            // })
 
 
             publishedItemsEl.append(newLiEl)
@@ -47,6 +52,12 @@ onValue(endorsementsInDB, function(snapshot){
             newLiEl.addEventListener("dblclick", function(){
                 let exactLocationOfItemInDB = ref(database, `endorsementsList/${currentEdorsementId}`)
                 remove(exactLocationOfItemInDB)
+            })
+
+            const likeBtn = document.getElementById("like-btn")
+            likeBtn.addEventListener("click", function(){
+                likes += 1
+                likeBtn.innerHTML = `❤ ${likes}`
             })
         }
     }else{
@@ -78,6 +89,3 @@ function clearInputFieldEl(){
     inputFromEl.value = ""
     inputToEl.value = ""
 }
-
-
-
