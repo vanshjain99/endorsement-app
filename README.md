@@ -12,6 +12,9 @@ A real-time endorsement sharing application where users can send and receive pub
 - **Responsive Design**: Works seamlessly on mobile and desktop devices
 - **PWA Support**: Install as a Progressive Web App with custom icons
 
+<img width="300" alt="image" src="https://github.com/user-attachments/assets/cdd2cc2d-ac88-40f2-bba3-c4a8099db159" />
+
+
 ## 🚀 Live Demo
 
 The app is connected to a shared Firebase Realtime Database, so all endorsements are visible to everyone using the app!
